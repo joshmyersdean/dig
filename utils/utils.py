@@ -33,7 +33,7 @@ def get_gt_indices(
     data (dict): The dataset containing object IDs, gestures, and prior information.
     obj_id (int): The object ID to match.
     gesture (int): The gesture type to match.
-    use_prior (bool): Whether to use prior data in filtering. Default is False.
+    use_prior (bool): Whether to use prior data (previous seg) in filtering. Default is False.
 
     Returns:
     list[int]: A list of indices where the conditions are met.
@@ -55,8 +55,8 @@ def get_annotations_and_gt(
 
     Parameters:
     data (dict): The dataset containing syn_gt, syn_gt_void, and syn_annotations.
-    indices (list[int]): Indices of data to be processed.
-    obj_id (int): Object ID for which data is required.
+    indices (list[int]): Indices of each list in the data dict.
+    obj_id (int): Object ID in scene.
 
     Returns:
     list[ModelessSample]: A list of ModelessSample instances.
