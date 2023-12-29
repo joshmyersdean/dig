@@ -40,25 +40,19 @@ class DIGDataset(Dataset):
 
         self.index_map = self._create_index_map()
 
-    def _create_index_map(self) -> List[Tuple[str, int]]:
-        """
-        Create or load an index map for the dataset.
-
-        Returns:
-        list[tuple]: A list of tuples containing filename and index pairs.
-        """
-        save_path = f"{self.split}_imap.pkl"
+    def _create_index_map(self,save_path=None):
+        if save_path is None:
+            save_path = f"{self.split}_imap.pkl"
         if os.path.isfile(save_path):
-            with open(save_path, "rb") as f:
+            with open(save_path, 'rb') as f:
                 index_map = pickle.load(f)
         else:
-            index_map = [
-                (filename, i)
-                for filename in tqdm(self.filenames)
-                for i in range(
-                    len(json.load(open(os.path.join(self.directory, filename))))
-                )
-            ]
+            index_map = []
+            for filename in tqdm(self.filenames):
+                with open(os.path.join(self.directory, filename), 'r') as file:
+                    data = json.load(file)
+                    for i in range(len(data)):
+                        index_map.append((filename, i))
             with open(save_path, "wb") as f:
                 pickle.dump(index_map, f)
         return index_map
