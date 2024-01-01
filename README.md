@@ -3,7 +3,7 @@
 
 __Josh Myers-Dean, Yifei Fan, Brian Price, Wilson Chan, Danna Gurari__
 
-[Paper](https://openaccess.thecvf.com/content/WACV2024/papers/Myers-Dean_Interactive_Segmentation_for_Diverse_Gesture_Types_Without_Context_WACV_2024_paper.pdf) [Supplementals](https://openaccess.thecvf.com/content/WACV2024/supplemental/Myers-Dean_Interactive_Segmentation_for_WACV_2024_supplemental.pdf)
+[Paper](https://openaccess.thecvf.com/content/WACV2024/papers/Myers-Dean_Interactive_Segmentation_for_Diverse_Gesture_Types_Without_Context_WACV_2024_paper.pdf) [Supplementals](https://openaccess.thecvf.com/content/WACV2024/supplemental/Myers-Dean_Interactive_Segmentation_for_WACV_2024_supplemental.pdf) [Download](https://o365coloradoedu-my.sharepoint.com/:f:/g/personal/jomy5901_colorado_edu/EuRcuFEdTdhFje_uBObq-gYBx8y8xEOqMxi2BmoIRlYqiQ)
 
 ## TODOS
 - Release Test Set
@@ -18,6 +18,11 @@ from dig.dataset import DIGDataset
 ds = DIGDataset(JSON_DIRECTORY, IMG_DIRECTORY, split=SPLIT)
 sample = ds[0] # sample.img, sample.previous_seg, sample.gt, sample.annotation
 ```
+
+We provoide an implementation of our RICE evaluation metric in `dig/rice.py`.
+
+## Issues
+If you encounter any issues with the data or have any questions we encourage you to submit an issue in this repository. For all other inquiries, please reach out to josh [dot] myers-dean [at] colorado [dot] edu.
 
 ## Citing
 If you find our work useful, please considering citing.
