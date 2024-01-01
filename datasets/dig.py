@@ -5,6 +5,7 @@ import pickle
 import numpy as np
 from torch.utils.data import Dataset
 from tqdm import tqdm
+import cv2
 from utils.data_utils import get_gt_indices, get_annotations_and_gt, ModelessSample
 
 
@@ -15,7 +16,8 @@ class DIGDataset(Dataset):
 
     def __init__(
         self,
-        directory: str,
+        json_directory: str,
+        img_directory: str
         prior_probability: float = 0.6,
         gesture_types: List[int] = [0, 1, 2, 3, 4],
         split: str = "train",
@@ -32,8 +34,9 @@ class DIGDataset(Dataset):
         assert 0 <= prior_probability <= 1, "Prior probability must be in [0,1]"
         assert 1 <= len(gesture_types) <= 5, "Support provided for 1-5 gesture types"
 
-        self.directory = directory
-        self.filenames = os.listdir(directory)
+        self.directory = json_directory
+        self.img_dir = img_directory
+        self.filenames = os.listdir(json_directory)
         self.prior_probability = prior_probability
         self.gesture_types = gesture_types
         self.split = split
@@ -84,6 +87,9 @@ class DIGDataset(Dataset):
         use_prior = np.random.binomial(1, p=self.prior_probability)
         gesture = random.choice(self.gesture_types)
         obj_id = np.random.choice(list(set(sample["obj_id"])))
+        img = cv2.imread(os.path.join(self.img_dir, sample["img_id"] + ".jpg"))
         valid_indices = get_gt_indices(sample, obj_id, gesture, bool(use_prior))
         data_list = get_annotations_and_gt(sample, valid_indices, obj_id)
-        return random.choice(data_list)
+        datum = random.choice(data_list)
+        datum.img = img
+        return datum
