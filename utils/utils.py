@@ -8,7 +8,7 @@ class ModelessSample:
     """
 
     def __init__(
-        self, annotation: np.ndarray, previous_seg: np.ndarray, gt: np.ndarray
+        self, annotation: np.ndarray, previous_seg: np.ndarray, gt: np.ndarray, img: np.ndarray = None
     ):
         """
         Initialize a ModelessSample instance.
@@ -17,10 +17,12 @@ class ModelessSample:
         annotation (np.array): The annotation data.
         previous_seg (np.array): The segmentation from the previous step.
         gt (np.array): The ground truth data.
+        img (np.array): image for sample
         """
         self.annotation = annotation
         self.previous_seg = previous_seg
         self.gt = gt
+        self.img = img
 
 
 def get_gt_indices(
