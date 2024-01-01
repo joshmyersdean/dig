@@ -6,7 +6,8 @@ import numpy as np
 from torch.utils.data import Dataset
 from tqdm import tqdm
 import cv2
-from utils.data_utils import get_gt_indices, get_annotations_and_gt, ModelessSample
+from typing import List
+from .utils import get_gt_indices, get_annotations_and_gt, ModelessSample
 
 
 class DIGDataset(Dataset):
@@ -17,7 +18,7 @@ class DIGDataset(Dataset):
     def __init__(
         self,
         json_directory: str,
-        img_directory: str
+        img_directory: str,
         prior_probability: float = 0.6,
         gesture_types: List[int] = [0, 1, 2, 3, 4],
         split: str = "train",

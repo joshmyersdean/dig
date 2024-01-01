@@ -1,0 +1,5 @@
+pycocotools
+opencv-python
+numpy
+tqdm
+torch
