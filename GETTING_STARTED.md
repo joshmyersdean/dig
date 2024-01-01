@@ -6,5 +6,8 @@ Given the size of the dataset, we chunk the data into json files containing up t
 When unzipped, they will create directories containing the chunked JSON files for all samples. If you are using our [dataloading implementation](dig/dataset.py), the unzipped directory will be the `json_directory`. The `img_directory` will correspond to where you downloaded the COCO+LVIS images.
 More specifics about the structure of the annotations can be found in [DATA.md](DATA.md).
 
+### Dataloading Implementation
+ If you are using our [dataloading implementation](dig/dataset.py), to avoid loading in large JSON files, we precomputed an index map of all json files for efficient dataloading. To cut down on time to construct these index maps, we provide pre-computed, pickled, index maps in `dig/index_maps`.
+ 
 ## RICE
 We provide a simple implementation of our proposed RICE evaluation metric in `dig/rice.py`. 
