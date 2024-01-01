@@ -12,7 +12,7 @@ __Josh Myers-Dean, Yifei Fan, Brian Price, Wilson Chan, Danna Gurari__
 This repository provides links to download data for the DIG dataset. Setup instructions are provided in [GETTING_STARTED.md](GETTING_STARTED.md). Given the size of the dataset, we chunk the data into json files containing up to 100 samples each. Each sample is corresponds to an image ID with annotations for: multiple gesture types (e.g., lasso, click), previous segmentations, ground truths, and other optional metadata. For the test set, we also include annotations for the setting of selecting multiple disconnected regions. For more info on the JSON, refer to [DATA.md](DATA.md).
 
 ### Using DIG
-We provide a lightweight example of dataloading with dig in `dig/dataset.py`. 
+We provide a lightweight example of dataloading with dig in `dig/dataset.py`. Since we chunk the data, we pre-computed index maps for each JSON file to allow for seamless dataloading.
 ```python
 from dig.dataset import DIGDataset
 ds = DIGDataset(JSON_DIRECTORY, IMG_DIRECTORY, split=SPLIT)
