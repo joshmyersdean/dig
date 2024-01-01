@@ -45,8 +45,11 @@ class DIGDataset(Dataset):
         self.index_map = self._create_index_map()
 
     def _create_index_map(self,save_path=None):
+        """
+        Creates pre-computed maps of each split for efficiency.
+        """
         if save_path is None:
-            save_path = f"{self.split}_imap.pkl"
+            save_path = f"./index_maps/{self.split}_imap.pkl"
         if os.path.isfile(save_path):
             with open(save_path, 'rb') as f:
                 index_map = pickle.load(f)
