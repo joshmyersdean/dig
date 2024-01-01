@@ -3,3 +3,4 @@ opencv-python
 numpy
 tqdm
 torch
+torchmetrics
